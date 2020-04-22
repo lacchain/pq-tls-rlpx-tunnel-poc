@@ -5,8 +5,6 @@ cd /etc/stunnel
 cat > stunnel.conf <<_EOF_
 debug = 6
 foreground = yes
-setuid = stunnel
-setgid = stunnel
 socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
 [${SERVICE}]

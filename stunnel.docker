@@ -1,6 +1,8 @@
-FROM alpine:3.11.5
+FROM ubuntu:18.04
 
-RUN apk add --no-cache stunnel
+RUN apt-get update && apt-get install -y \
+    stunnel \
+ && rm -rf /var/lib/apt/lists/*
 
 COPY stunnel-entrypoint.sh /entrypoint.sh
 COPY rootCA.crt /rootCA.crt
