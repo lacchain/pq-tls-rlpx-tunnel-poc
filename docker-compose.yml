@@ -4,6 +4,7 @@ services:
   client:
     build: 
       context: ./stunnel/
+    image: stunnel
     ports:
       - "4911:4911"
     environment:
@@ -16,8 +17,7 @@ services:
       - ./stunnel/client.key:/etc/stunnel/service.key
 
   server:
-    build: 
-      context: ./stunnel/
+    image: stunnel
     environment:
       - CLIENT=no
       - SERVICE=server
