@@ -1,0 +1,6 @@
+FROM alpine:3.11.5
+
+RUN apk add --no-cache socat
+
+ENTRYPOINT ["socat", "TCP4-LISTEN:2000,fork", "EXEC:cat"]
+

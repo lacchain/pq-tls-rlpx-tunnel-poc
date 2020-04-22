@@ -1,0 +1,39 @@
+version: "3.3"
+
+services:
+  client:
+    build: 
+      context: .
+      dockerfile: stunnel.docker
+    ports:
+      - "4911:4911"
+    environment:
+      - CLIENT=yes
+      - SERVICE=client
+      - ACCEPT=0.0.0.0:4911
+      - CONNECT=server:4912
+    volumes:
+      - ./client.crt:/etc/stunnel/service.crt
+      - ./client.key:/etc/stunnel/service.key
+
+  server:
+    build: 
+      context: .
+      dockerfile: stunnel.docker
+    environment:
+      - CLIENT=no
+      - SERVICE=server
+      - ACCEPT=0.0.0.0:4912
+      - CONNECT=my_service:2000
+    volumes:
+      - ./server.crt:/etc/stunnel/service.crt
+      - ./server.key:/etc/stunnel/service.key
+    expose:
+      - "4912"
+
+  my_service:
+    build: 
+      context: .
+      dockerfile: my_service.docker
+    expose:
+      - "2000"
