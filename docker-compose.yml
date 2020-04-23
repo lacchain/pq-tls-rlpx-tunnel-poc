@@ -1,12 +1,26 @@
 version: "3.3"
 
 services:
+  33c8fea:
+    build:
+      context: ./besu/
+    image: besu
+    volumes:
+      - ./besu/33c8fea/key:/key
+      - ./besu/33c8fea/static-nodes.m4:/static-nodes.m4
+      - ./besu/33c8fea/iptables.rules.sh:/iptables.rules.sh
+    environment:
+      - BESU_NODE_PRIVATE_KEY_FILE=/key
+      - BESU_NETWORK=dev
+      - BESU_DISCOVERY_ENABLED=false
+      - BESU_LOGGING=INFO
+    cap_add:
+      - NET_ADMIN
+
   client:
     build: 
       context: ./stunnel/
     image: stunnel
-    ports:
-      - "4911:4911"
     environment:
       - CLIENT=yes
       - SERVICE=client
@@ -15,6 +29,8 @@ services:
     volumes:
       - ./stunnel/client.crt:/etc/stunnel/service.crt
       - ./stunnel/client.key:/etc/stunnel/service.key
+    expose:
+      - "4911"
 
   server:
     image: stunnel
@@ -22,16 +38,26 @@ services:
       - CLIENT=no
       - SERVICE=server
       - ACCEPT=0.0.0.0:4912
-      - CONNECT=my_service:2000
+      - CONNECT=9ab5623:30303
     volumes:
       - ./stunnel/server.crt:/etc/stunnel/service.crt
       - ./stunnel/server.key:/etc/stunnel/service.key
     expose:
       - "4912"
 
-  my_service:
-    build: 
-      context: .
-      dockerfile: my_service.docker
+  9ab5623:
+    image: besu
+    volumes:
+      - ./besu/9ab5623/key:/key
+      - ./besu/9ab5623/iptables.rules.sh:/iptables.rules.sh
+    environment:
+      - BESU_NODE_PRIVATE_KEY_FILE=/key
+      - BESU_NETWORK=dev
+      - BESU_DISCOVERY_ENABLED=false
+      - BESU_LOGGING=OFF
+      - BESU_MINER_ENABLED=true
+      - BESU_MINER_COINBASE=0000000000000000000000000000000000000000
     expose:
-      - "2000"
+      - "30303"
+    cap_add:
+      - NET_ADMIN

@@ -1,8 +1,0 @@
-FROM ubuntu:18.04
-
-RUN apt-get update && apt-get install -y \
-    socat \
- && rm -rf /var/lib/apt/lists/*
-
-ENTRYPOINT ["socat", "TCP4-LISTEN:2000,fork", "EXEC:cat"]
-
