@@ -1,6 +1,6 @@
-FROM ubuntu:18.04
+FROM debian:testing-slim
 
-RUN apt-get update && apt-get install -y \
+RUN apt update && apt install -y \
     stunnel \
  && rm -rf /var/lib/apt/lists/*
 
