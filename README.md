@@ -1,4 +1,4 @@
-## Hyperledger Besu RLPx connections on top of TLS
+## TLS connections encapsulating Hyperledger Besu RPLx communication 
 This is a proof of concept for TLS encryption of the communication between two Hyperledger Besu nodes.
 
 According to its specification, Ethereum nodes uses RLPx protocol for communication between nodes. This protocol carries encrypted messages using the ECIES method and all cryptographic operations are based on the secp256k1 elliptic curve.
