@@ -10,9 +10,9 @@ For this POC you must provide your own certificates and a self signed Root Certi
 ```shell
 $ openssl genrsa -out rootCA.key 4096
 ```
-#### Dilithium (Post quantum resistant)
+#### Falcon-512 (Post quantum resistant)
 ```shell
-$ openssl genpkey -algorithm dilithium2 -out rootCA.key
+$ openssl genpkey -algorithm falcon512 -out rootCA.key
 ```
 
 ### Create and self sign the Root Certificate
@@ -26,9 +26,9 @@ $ openssl req -x509 -new -nodes -key rootCA.key -subj "/C=US/ST=CA/O=IADB/CN=god
 ```shell
 $ openssl genrsa -out server.key 2048
 ```
-#### Dilithium
+#### Falcon-512
 ```shell
-$ openssl genpkey -algorithm dilithium2 -out server.key
+$ openssl genpkey -algorithm falcon512 -out server.key
 ```
 
 ### Create Certificate Signing Request for server
