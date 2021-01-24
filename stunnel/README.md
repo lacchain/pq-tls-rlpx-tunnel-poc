@@ -1,6 +1,3 @@
-# Additional dependencies
-You can provide additional Debian dependencies putting them into the `debs/` directory. For example, you can put the **libssl** and **liboqs** from https://github.com/lacchain/liboqs-debian and https://github.com/lacchain/oqs-openssl-debian to enable quantum capabilities
-
 # Certificates
 For this POC you must provide your own certificates and a self signed Root Certified Authority. Bellow you can find a set of commands to create those.
 
