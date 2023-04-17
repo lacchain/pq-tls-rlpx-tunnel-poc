@@ -1,3 +1,5 @@
+node1/
+node2/
 *.key
 *.csr
 *.crt
