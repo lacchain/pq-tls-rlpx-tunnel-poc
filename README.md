@@ -12,7 +12,7 @@ This proof of concept is built on top of [stunnel](https://www.stunnel.org/) whi
 
 There are two ways to test the TLS tunnel between the peers:
 
-- using dockers: Follow the instructions as described inside the "docker" folder
+- using Docker: Follow the instructions as described inside the "docker" folder
 - cloud configuration: Follow the instructions as described in the [cloud section](cloud/README.md) file.
 
 ## Copyright 2020 LACChain
